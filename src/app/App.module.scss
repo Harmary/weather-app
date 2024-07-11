@@ -1,0 +1,44 @@
+@import "./styles/variables.scss";
+
+.App {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+
+  &__content {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  &__logo {
+    color: var(--title-font-color);
+    font-weight: 500;
+    display: block;
+    padding-top: 80px;
+  }
+
+  &__layout {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.cloudy {
+  background-image: url("../shared/assets/img/cloudy.jpg");
+}
+
+.sunny {
+  background-image: url("../shared/assets/img/sunny.jpg");
+}
+
+.rainy {
+  background-image: url("../shared/assets/img/rainy.jpg");
+}

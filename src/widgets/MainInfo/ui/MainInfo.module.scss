@@ -1,0 +1,44 @@
+.MainInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    gap: 24px;
+
+    &__place {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__temperature, &__city, &__day, &__weather {
+        color: var(--title-font-color);
+    }
+
+    &__temperature {
+        font-size: var(--font-size-title);
+        line-height: 130px;
+    }
+
+    &__city {
+        font-size: 75px;
+    }
+
+    &__day {
+        font-size: 24px;
+    }
+
+    &__weather {
+        display: flex;
+        flex-direction: column;
+
+        &img {
+            width: 80px;
+            height: 80px;
+        }
+
+        &name {
+            display: block;
+            font-size: 24px;
+        }
+    }
+}
