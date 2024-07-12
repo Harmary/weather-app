@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -10,18 +10,22 @@ import { getInfoAboutTheWeather } from 'src/entities/weather/model/services/getI
 
 import cls from './App.module.scss';
 import { getCurrentWeather } from 'src/entities/weather/model/selector/getCurrentWeather';
+import { weatherImgs } from 'src/shared/config/weatherConfig';
 
 function App() {
   const dispatch = useDispatch();
   const currentWeather = useSelector(getCurrentWeather);
+  const backgroundImg = useMemo(() => {
+    return weatherImgs.find(({ code }) => code === currentWeather.cloudiness)?.name || 'sunny';
+  }, [currentWeather.cloudiness]);
 
   useEffect(() => {
-    dispatch(getInfoAboutTheWeather({ lat: '44.6054434', lon: '33.5220842'}) as unknown as UnknownAction);
-    return () => {}
+    dispatch(getInfoAboutTheWeather({ lat: '44.6054434', lon: '33.5220842' }) as unknown as UnknownAction);
+    return () => { }
   }, [dispatch]);
 
   return (
-    <div className={`${cls.App} ${cls['sunny']}`}>
+    <div className={`${cls.App} ${cls[backgroundImg]}`}>
       <main className={cls.App__content}>
         <Container maxWidth='lg'>
           <div className={cls.App__layout}>
