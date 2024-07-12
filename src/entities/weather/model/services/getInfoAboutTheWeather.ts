@@ -1,27 +1,28 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// First, create the thunk
 export const getInfoAboutTheWeather = createAsyncThunk(
     'weather/getInfoAboutTheWeather',
-    async (geoId: number, thunkAPI) => {
+    async (cords: { lon: string; lat: string }, thunkAPI) => {
         const response = await axios.get(
-            `https://api.gismeteo.net/v2/weather/current/${geoId}`,
+            `http://api.openweathermap.org/data/2.5/forecast?appid=8e5c935b1c1a426a021403b54734c77d`,
             {
                 headers: {
-                    'X-Gismeteo-Token': '56b30cb255.3443075',
-                    'Accept-Encoding': 'deflate, gzip',
                     'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': '*'
+                    'Access-Control-Allow-Headers': '*',
+                    "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
                 },
                 params: {
+                    lon: cords.lon,
+                    lat: cords.lat,
                     lang: 'en',
+                    units: 'metric',
+                    appid: process.env.API_KEY
                 }
             }
         );
 
-
-
         return response.data
     },
-)
+);
+

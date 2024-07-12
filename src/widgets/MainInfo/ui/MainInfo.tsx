@@ -1,14 +1,11 @@
 import dayjs from 'dayjs';
 import cls from './MainInfo.module.scss';
-import sunny from 'src/shared/assets/icons/sunny.svg';
-import cloudy from 'src/shared/assets/icons/cloudy.svg';
-import rainy from 'src/shared/assets/icons/rainy.svg';
-import { cloudiness, cloudinessImg } from 'src/shared/config/weatherConfig';
+import { weatherConditions } from 'src/shared/config/weatherConfig';
 
 type WeatherMainInfo = {
-    temperature: number;
-    city: string;
-    cloudiness: number;
+    temperature?: number;
+    city?: string;
+    cloudiness?: number;
 }
 
 type MainInfoProps = {
@@ -16,6 +13,7 @@ type MainInfoProps = {
 }
 
 export function MainInfo({ weatherMainInfo }: MainInfoProps) {
+    const condition = weatherConditions.find((value) => value.code === weatherMainInfo?.cloudiness);
 
     if (!weatherMainInfo) {
         return <div className={cls.MainInfo}>Sorry, can't find info</div>
@@ -24,7 +22,7 @@ export function MainInfo({ weatherMainInfo }: MainInfoProps) {
 
     return <div className={cls.MainInfo}>
         <div className={cls.MainInfo__temperature}>
-            {weatherMainInfo?.temperature}&#xb0;
+            {Math.round(weatherMainInfo?.temperature as number)}&#xb0;
         </div>
         <div className={cls.MainInfo__place}>
             <div className={cls.MainInfo__city}>
@@ -37,10 +35,10 @@ export function MainInfo({ weatherMainInfo }: MainInfoProps) {
         <div className={cls.MainInfo__weather}>
             <img
                 className={cls.MainInfo__weatherimg}
-                src={cloudinessImg[weatherMainInfo?.cloudiness]}
+                src={condition?.icon}
                 alt=""
             />
-            <span className={cls.MainInfo__weathername}>{cloudiness[weatherMainInfo?.cloudiness]}</span>
+            <span className={cls.MainInfo__weathername}>{condition?.name}</span>
         </div>
     </div>;
 }

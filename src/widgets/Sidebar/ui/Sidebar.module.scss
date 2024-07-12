@@ -7,6 +7,10 @@
   -webkit-backdrop-filter: blur(16.7px);
 
   &__content {
-    padding: 16px;
+    padding: 24px 80px;
+
+    @media (max-width: 1200px) {
+      padding: 24px 40px;
+    }
   }
 }

@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { weatherReducer } from 'src/entities/weather/model/slice/weatherSlice'
+import { StateSchema } from './StateSchema'
 
-export const store = configureStore({
+export const store = configureStore<StateSchema>({
     reducer: {
-        weatherReducer,
+        weather: weatherReducer,
     },
 })
 

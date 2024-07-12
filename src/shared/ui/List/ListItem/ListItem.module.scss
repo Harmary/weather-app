@@ -1,0 +1,10 @@
+.ListItem {
+    margin: 12px 0;
+    display: flex;
+    justify-content: space-between;
+
+    &__name {
+        opacity: 0.5;
+        text-transform: capitalize;
+    }
+}
