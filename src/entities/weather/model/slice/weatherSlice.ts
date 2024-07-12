@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getInfoAboutTheWeather } from '../services/getInfoAboutTheWeather';
 
 export interface WeatherState {
-    value: number
+    value: any
 }
 
 const initialState: WeatherState = {
-    value: 0,
+    value: {},
 }
 
 export const weatherSlice = createSlice({
@@ -13,6 +14,11 @@ export const weatherSlice = createSlice({
     initialState,
     reducers: {
     },
+    extraReducers: (builder) => {
+        builder.addCase(getInfoAboutTheWeather.fulfilled, (state, action) => {
+            state.value = action.payload;
+        })
+    }
 })
 
 export const { actions: weatherActions } = weatherSlice;
