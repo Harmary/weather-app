@@ -2,7 +2,7 @@ import cls from './ListItem.module.scss';
     
 type ListItemProps = {	
     name: string;
-    value: string;
+    value: string | number;
 }
     
 export const ListItem: React.FC<ListItemProps> = ({name, value}) => {

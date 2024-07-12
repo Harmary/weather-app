@@ -2,12 +2,15 @@ import { useSelector } from 'react-redux';
 import cls from './Sidebar.module.scss'
 import { Divider } from 'src/shared/ui/Divider/Divider';
 import { List } from 'src/shared/ui/List/List';
+import { getWeatherDetails } from 'src/entities/weather/model/selector/getWeatherDetails';
+import { mainTitles } from '../config/titles';
 
 type SidebarProps = {
 }
 
 
 export function Sidebar() {
+    const weatherDetails = useSelector(getWeatherDetails);
 
     return <aside className={cls.Sidebar}>
         <div className={cls.Sidebar__content}>
@@ -17,19 +20,19 @@ export function Sidebar() {
             <Divider />
             <List
                 title='Weather Details'
-                items={{
-                    cloudy: '12%',
-                    humidity: '12%',
-
-                }} />
+                items={weatherDetails?.main} 
+                nameConfig={mainTitles}
+            />
             <Divider />
             <List
-                title='Weather Details'
-                items={{
-                    cloudy: '12%',
-                    humidity: '12%',
-
-                }} />
+                title='Winds'
+                items={weatherDetails?.wind} 
+            />
+            <Divider />
+            <List
+                title='Clouds'
+                items={weatherDetails?.clouds} 
+            />
         </div>
 
     </aside>;
