@@ -5,7 +5,7 @@ export const getInfoAboutTheWeather = createAsyncThunk(
     'weather/getInfoAboutTheWeather',
     async (cords: { lon: string; lat: string }, thunkAPI) => {
         const response = await axios.get(
-            `http://api.openweathermap.org/data/2.5/forecast?appid=8e5c935b1c1a426a021403b54734c77d`,
+            `http://api.openweathermap.org/data/2.5/forecast`,
             {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
