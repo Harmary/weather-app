@@ -5,6 +5,7 @@ import { Weather } from '../types/types';
 export interface WeatherState {
     value?: Weather,
     isLoading: boolean,
+    error?: string 
 }
 
 const initialState: WeatherState = {
@@ -20,6 +21,7 @@ export const weatherSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(getInfoAboutTheWeather.pending, (state, action) => {
             state.isLoading = true;
+            state.error = undefined;
         });
         builder.addCase(getInfoAboutTheWeather.fulfilled, (state, action) => {
             state.value = action.payload;
@@ -27,6 +29,7 @@ export const weatherSlice = createSlice({
         });
         builder.addCase(getInfoAboutTheWeather.rejected, (state, action) => {
             state.isLoading = false;
+            state.error = 'Something went wrong'
         });
     }
 })

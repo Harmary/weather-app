@@ -2,15 +2,11 @@ import { useSelector } from 'react-redux';
 import cls from './Sidebar.module.scss'
 import { Divider } from 'src/shared/ui/Divider/Divider';
 import { List } from 'src/shared/ui/List/List';
-import { getWeatherDetails } from 'src/entities/weather/model/selector/getWeatherDetails';
 import { mainTitles } from '../config/titles';
-
-type SidebarProps = {
-}
-
+import { selectWeatherDetails } from 'src/entities/weather/model/selector/selectWeatherDetails';
 
 export function Sidebar() {
-    const weatherDetails = useSelector(getWeatherDetails);
+    const weatherDetails = useSelector(selectWeatherDetails);
 
     return <aside className={cls.Sidebar}>
         <div className={cls.Sidebar__content}>

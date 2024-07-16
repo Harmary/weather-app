@@ -3,21 +3,17 @@ import axios from 'axios';
 
 export const getGeo = createAsyncThunk(
     'weather/getInfoAboutTheWeather',
-    async (geoId: number, thunkAPI) => {
+    async (q: string, thunkAPI) => {
         const response = await axios.get(
-            `https://api.gismeteo.net/v2/weather/current/${geoId}`,
+            `https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/geo/1.0/direct`,
             {
-                headers: {
-                    'X-Gismeteo-Token': '56b30cb255.3443075',
-                    'Accept-Encoding': 'deflate, gzip'
-                },
-                // params: {
-                //     lang: 'en',
-                // }
+                params: {
+                    q: q,
+                    limit: 5,
+                    appid: process.env.API_KEY,                
+                }
             }
         );
-
-
 
         return response.data
     },
