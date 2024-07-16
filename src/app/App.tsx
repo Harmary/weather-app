@@ -12,6 +12,7 @@ import cls from "./App.module.scss";
 import { weatherImgs } from "src/shared/config/weatherConfig";
 import { selectCurrentWeather } from "src/entities/weather/model/selector/selectCurrentWeather";
 import { RequestStateRender } from "src/shared/lib/components/RequestStateRender";
+import { weatherActions } from "src/entities/weather/model/slice/weatherSlice";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,12 +33,12 @@ function App() {
             }) as unknown as UnknownAction
           );
         },
-        (error) => {
-          console.log(error)
+        () => {
+          dispatch(weatherActions.setError("Enable geoposition or select the place"))
         }
       );
     } else {
-     console.log('error')
+     dispatch(weatherActions.setError("Can't find any related info"));
     }
   }, [dispatch]);
 
@@ -53,9 +54,7 @@ function App() {
           </div>
         </Container>
       </main>
-      <RequestStateRender isLoading={currentWeather.isLoading} error={currentWeather.error} showMessages={false}>
-        <Sidebar />
-      </RequestStateRender>
+      <Sidebar />
     </div>
   );
 }

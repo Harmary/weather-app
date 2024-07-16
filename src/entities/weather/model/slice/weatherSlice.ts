@@ -17,6 +17,9 @@ export const weatherSlice = createSlice({
     name: 'weather',
     initialState,
     reducers: {
+        setError: (state, action) => {
+            state.error = action.payload;
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(getInfoAboutTheWeather.pending, (state, action) => {
