@@ -20,9 +20,25 @@ function App() {
     return weatherImgs.find(({ code }) => code === currentWeather.cloudiness)?.name || "sunny";
   }, [currentWeather.cloudiness]);
 
+
   useEffect(() => {
-    dispatch(getInfoAboutTheWeather({ lat: "40.8358846", lon: "14.2487679" }) as unknown as UnknownAction);
-    return () => {};
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          dispatch(
+            getInfoAboutTheWeather({
+              lat: position.coords.latitude.toString(),
+              lon: position.coords.longitude.toString(),
+            }) as unknown as UnknownAction
+          );
+        },
+        (error) => {
+          console.log(error)
+        }
+      );
+    } else {
+     console.log('error')
+    }
   }, [dispatch]);
 
   return (
