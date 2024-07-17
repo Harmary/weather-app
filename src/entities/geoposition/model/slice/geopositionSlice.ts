@@ -25,7 +25,11 @@ const initialState: GeopositionState = {
 export const GeopositionSlice = createSlice({
   name: "Geoposition",
   initialState,
-  reducers: {},
+  reducers: {
+    selectGeoposiion: (state, action) => {
+      state.selectedGeo = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(getGeoposition.pending, (state, action) => {
       state.isLoading = true;

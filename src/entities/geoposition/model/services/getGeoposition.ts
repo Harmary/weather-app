@@ -8,7 +8,7 @@ export const getGeoposition = createAsyncThunk(
           params: {
             q: q,
             limit: 5,
-            appid: process.env.API_KEY,
+            appid: process.env.REACT_APP_API_KEY,
           },
         });
 
