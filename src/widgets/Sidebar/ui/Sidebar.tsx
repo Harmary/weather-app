@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import cls from "./Sidebar.module.scss";
 import { Divider } from "src/shared/ui/Divider/Divider";
 import { List } from "src/shared/ui/List/List";
-import { mainTitles } from "../config/titles";
+import { mainList } from "../config/titles";
 import { selectWeatherDetails } from "src/entities/weather/model/selector/selectWeatherDetails";
 import { Autocomplete } from "src/features/getWeatherByCityName/ui/Autocomplete";
 import { RequestStateRender } from "src/shared/lib/components/RequestStateRender";
@@ -17,7 +17,7 @@ export function Sidebar() {
       <div className={cls.Sidebar__content}>
         <Autocomplete />
         <RequestStateRender isLoading={isLoading} showMessages={false} error={error} >
-          <List title='Weather Details' items={weatherDetails?.main} nameConfig={mainTitles} />
+          <List title='Weather Details' items={weatherDetails?.main} displayOptions={mainList} />
           <Divider />
           <List title='Winds' items={weatherDetails?.wind} />
           <Divider />
