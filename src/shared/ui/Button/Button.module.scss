@@ -1,28 +1,71 @@
 .Button {
-    all: unset;
-    padding: 16px;
+  all: unset;
+  padding: 16px;
+  border-radius: 4px;
+  &:hover {
+    cursor: pointer;
+  }
+  &:active {
+    transform: scale(0.98);
+  }
 }
 
 .cloudy {
-  background-color: #efa378 ;
+  background-color: #efa378;
+  &:hover {
+    background-color: #fdaf81;
+  }
+  &:active {
+    background-color: #9f755c;
+  }
 }
 
 .sunny {
-  background-color: #5082a7 ;
+  background-color: #5082a7;
+  &:hover {
+    background-color: #5a91bc;
+  }
+  &:active {
+    background-color: #477293;
+  }
 }
 
 .rainy {
-  background-color: #5a817b ;
+  background-color: #5a817b;
+  &:hover {
+    background-color: #6a9690;
+  }
+  &:active {
+    background-color: #4d6d68;
+  }
 }
 
 .thunderstorm {
-  background-color: #b1788c ;
+  background-color: #b1788c;
+  &:hover {
+    background-color: #c5869c;
+  }
+  &:active {
+    background-color: #9d6c7d;
+  }
 }
 
 .snow {
-  background-color: #6c7981 ;
+  background-color: #6c7981;
+  &:hover {
+    background-color: #818f98;
+  }
+  &:active {
+    background-color: #5d686e;
+  }
 }
 
 .fog {
-  background-color: #9c9cb3 ;
+  background-color: #9c9cb3;
+  &:hover {
+    background-color: #adadc5;
+  }
+  &:active {
+    background-color: #8e8ea3;
+  }
 }
