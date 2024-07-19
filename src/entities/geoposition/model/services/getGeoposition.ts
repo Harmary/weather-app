@@ -2,9 +2,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const getGeoposition = createAsyncThunk(
-    'weather/getGeoposition',
+    'geoposition/getGeopositionByQuery',
     async (q: string) => {
-        const response = await axios.get(`http://api.openweathermap.org/geo/1.0/direct`, {
+        const response = await axios.get(`https://api.openweathermap.org/geo/1.0/direct`, {
           params: {
             q: q,
             limit: 5,
