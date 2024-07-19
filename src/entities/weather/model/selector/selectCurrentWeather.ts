@@ -1,9 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { StateSchema } from "src/app/providers/StoreProvider/config/StateSchema";
-import { WeatherState } from "../slice/weatherSlice";
 import { selectChoosedGeoposition } from "src/entities/geoposition";
-
-const selectWeather = (state: StateSchema) => state.weather
+import { selectWeather } from "./selectWeather";
 
 export const selectCurrentWeather = createSelector(
     [selectWeather, selectChoosedGeoposition], (state, selectedGeo) => {

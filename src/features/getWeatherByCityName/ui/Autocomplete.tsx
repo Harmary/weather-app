@@ -1,31 +1,33 @@
-import { Combobox, ComboboxInput, ComboboxOption, ComboboxOptions } from "@headlessui/react";
 import { ChangeEvent, useCallback, useState } from "react";
-import cls from "./Autocomplete.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { getGeoposition } from "../../../entities/geoposition/model/services/getGeoposition";
-import { UnknownAction } from "@reduxjs/toolkit";
-import { selectListOfGeopositions } from "../../../entities/geoposition/model/selectors/selectListOfGeopositions";
-import { Geoposition, geopositionActions } from "../../../entities/geoposition/model/slice/geopositionSlice";
-import { getInfoAboutTheWeather } from "src/entities/weather/model/services/getInfoAboutTheWeather";
+
+import { Combobox, ComboboxInput, ComboboxOption, ComboboxOptions } from "@headlessui/react";
+
 import debounce from "lodash.debounce";
+
+import { UnknownAction } from "@reduxjs/toolkit";
+import { AppDispatch } from "src/app/providers/StoreProvider/config/store";
+import { Geoposition, geopositionActions, getGeoposition } from "src/entities/geoposition";
+import { getInfoAboutTheWeather } from "src/entities/weather/model/services/getInfoAboutTheWeather";
+import { selectListOfGeopositions } from "src/entities/geoposition/model/selectors/selectListOfGeopositions";
+
+import cls from "./Autocomplete.module.scss";
 
 const MIN_QUERY_STR = 3;
 
 export function Autocomplete() {
   const [selectedOption, setSelectedOption] = useState<Geoposition | null>(null);
-  const [query, setQuery] = useState("");
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const geopositions = useSelector(selectListOfGeopositions);
 
   const fetchLocations = (q: string) => {
-    dispatch(getGeoposition(q) as unknown as UnknownAction);
+    dispatch(getGeoposition(q));
   };
 
-  const debouncedFetch = useCallback(debounce(fetchLocations, 1000), []);
+  const debouncedFetch = useCallback(debounce(fetchLocations, 300), []);
 
   const handleChangeQuery = (event: ChangeEvent<HTMLInputElement>) => {
     const q = event.target.value;
-    setQuery(q);
     if (q.length !== 0 && q.length > MIN_QUERY_STR) {
       debouncedFetch(q);
     }

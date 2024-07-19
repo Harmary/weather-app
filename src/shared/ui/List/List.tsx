@@ -12,7 +12,7 @@ type ListProps = {
   displayOptions?: DisplayConfig;
 };
 
-export function List({ title, items, displayOptions = {} }: ListProps) {
+export function List({ title, items = {}, displayOptions = {} }: ListProps) {
   const { nameConfig, valueConfig } = displayOptions;
   
   return (

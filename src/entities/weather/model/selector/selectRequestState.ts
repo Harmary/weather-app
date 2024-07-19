@@ -1,8 +1,10 @@
-import { StateSchema } from "src/app/providers/StoreProvider/config/StateSchema";
+import { createSelector } from "@reduxjs/toolkit";
+import { WeatherState } from "../slice/weatherSlice";
+import { selectWeather } from "./selectWeather";
 
-export const selectRequestState = (state: StateSchema) => {
+export const selectRequestState = createSelector([selectWeather], (state: WeatherState) => {
   return {
-    isLoading: state.weather.isLoading,
-    error: state.weather.error,
+    isLoading: state.isLoading,
+    error: state.error,
   };
-};
+});

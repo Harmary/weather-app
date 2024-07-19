@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const getInfoAboutTheWeather = createAsyncThunk(
     'weather/getInfoAboutTheWeather',
-    async (cords: { lon: string; lat: string }, thunkAPI) => {
+    async (cords: { lon: string; lat: string }) => {
         const response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast`, {
           params: {
             lon: cords.lon,

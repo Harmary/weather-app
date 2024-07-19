@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getGeoposition } from "../services/getGeoposition";
+import { GEOPOSITION } from "src/shared/consts/geoposition";
 
 export interface GeopositionState {
   list: Geoposition[];
@@ -28,10 +29,11 @@ export const GeopositionSlice = createSlice({
   reducers: {
     selectGeoposiion: (state, action) => {
       state.selectedGeo = action.payload;
+      localStorage.setItem(GEOPOSITION, JSON.stringify(action.payload));
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(getGeoposition.pending, (state, action) => {
+    builder.addCase(getGeoposition.pending, (state) => {
       state.isLoading = true;
       state.error = undefined;
     });
@@ -39,7 +41,7 @@ export const GeopositionSlice = createSlice({
       state.list = action.payload;
       state.isLoading = false;
     });
-    builder.addCase(getGeoposition.rejected, (state, action) => {
+    builder.addCase(getGeoposition.rejected, (state) => {
       state.isLoading = false;
       state.error = "Something went wrong";
     });

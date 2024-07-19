@@ -10,7 +10,7 @@ export interface WeatherState {
 
 const initialState: WeatherState = {
     value: undefined,
-    isLoading: false,
+    isLoading: true,
 }
 
 export const weatherSlice = createSlice({

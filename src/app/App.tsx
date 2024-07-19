@@ -4,42 +4,24 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Sidebar } from "src/widgets/Sidebar";
 import { MainInfo } from "src/widgets/MainInfo";
-import { UnknownAction } from "@reduxjs/toolkit";
+import { selectCurrentWeather } from "src/entities/weather";
 import { Container } from "src/shared/ui/Container/Container";
-import { getInfoAboutTheWeather } from "src/entities/weather/model/services/getInfoAboutTheWeather";
+import { weatherImgs } from "src/shared/config/weatherConfig";
+import { initializeGeoposition } from "src/entities/geoposition";
+import { RequestStateRender } from "src/shared/lib/components/RequestStateRender";
 
 import cls from "./App.module.scss";
-import { weatherImgs } from "src/shared/config/weatherConfig";
-import { selectCurrentWeather } from "src/entities/weather/model/selector/selectCurrentWeather";
-import { RequestStateRender } from "src/shared/lib/components/RequestStateRender";
-import { weatherActions } from "src/entities/weather/model/slice/weatherSlice";
+import { AppDispatch } from "./providers/StoreProvider/config/store";
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const currentWeather = useSelector(selectCurrentWeather);
   const backgroundImg = useMemo(() => {
     return weatherImgs.find(({ code }) => code === currentWeather.cloudiness)?.name || "sunny";
   }, [currentWeather.cloudiness]);
 
-
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          dispatch(
-            getInfoAboutTheWeather({
-              lat: position.coords.latitude.toString(),
-              lon: position.coords.longitude.toString(),
-            }) as unknown as UnknownAction
-          );
-        },
-        () => {
-          dispatch(weatherActions.setError("Enable geoposition or select the place"))
-        }
-      );
-    } else {
-     dispatch(weatherActions.setError("Can't find any related info"));
-    }
+    dispatch(initializeGeoposition());
   }, [dispatch]);
 
   return (
