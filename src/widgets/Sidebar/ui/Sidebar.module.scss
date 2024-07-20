@@ -6,7 +6,7 @@
   backdrop-filter: blur(16.7px);
   -webkit-backdrop-filter: blur(16.7px);
   overflow: auto;
-
+  transition: transform 0.3s ease;
 
   &__content {
     padding: 24px 80px;
@@ -15,4 +15,34 @@
       padding: 24px 40px;
     }
   }
+
+  &__toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    background: rgba(70, 70, 70, 0.8);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+
+    @media (max-width: 1200px) {
+      display: block;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    width: 100vw;
+    transform: translateX(-100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+}
+
+.open {
+  transform: translateX(0);
 }

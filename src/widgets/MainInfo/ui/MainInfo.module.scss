@@ -1,41 +1,58 @@
 .MainInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  gap: 24px;
+  color: var(--title-font-color);
+
+  &__place {
     display: flex;
-    flex-direction: row;
-    align-items: end;
-    gap: 24px;
-    color: var(--title-font-color);
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
-    &__place {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+  &__temperature {
+    font-size: var(--font-size-title);
+    line-height: var(--font-line-title);
+    @media (max-width: 1200px) {
+      font-size: calc(var(--font-size-title) / 2);
+      line-height: calc(var(--font-line-title) / 2);
+    }
+  }
+
+  &__city {
+    font-size: var(--font-size-subtitle);
+    @media (max-width: 1200px) {
+      font-size: calc(var(--font-size-subtitle) / 2);
+    }
+  }
+
+  &__day {
+    font-size: var(--font-size-text);
+    @media (max-width: 1200px) {
+      font-size: calc(var(--font-size-text) / 2);
+    }
+  }
+
+  &__weather {
+    display: flex;
+    flex-direction: column;
+
+    &img {
+      width: 80px;
+      height: 80px;
+       @media (max-width: 1200px) {
+       width: 40px;
+      height: 40px;
+      }
     }
 
-    &__temperature {
-        font-size: var(--font-size-title);
-        line-height: var(--font-line-title);
+    &name {
+      display: block;
+      font-size: var(--font-size-text);
+      @media (max-width: 1200px) {
+        font-size: calc(var(--font-size-text) / 2);
+      }
     }
-
-    &__city {
-        font-size: var(--font-size-subtitle);
-    }
-
-    &__day {
-        font-size: var(--font-size-text);
-    }
-
-    &__weather {
-        display: flex;
-        flex-direction: column;
-
-        &img {
-            width: 80px;
-            height: 80px;
-        }
-
-        &name {
-            display: block;
-            font-size: var(--font-size-text);
-        }
-    }
+  }
 }

@@ -9,35 +9,45 @@ import { RequestStateRender } from "src/shared/lib/components/RequestStateRender
 import { selectRequestState } from "src/entities/weather";
 import { Button } from "src/shared/ui/Button/Button";
 import { selectWeather } from "src/entities/weather/model/selector/selectWeather";
+import { useState } from "react";
 
 export function Sidebar() {
   const { isLoading, error } = useSelector(selectRequestState);
   const weather = useSelector(selectWeatherDetails);
   const { value } = useSelector(selectWeather);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   return (
-    <aside className={cls.Sidebar}>
-      <div className={cls.Sidebar__content}>
-        <Autocomplete />
-        <RequestStateRender isLoading={isLoading} showMessages={false} error={error}>
-          <List title='Weather Details' items={weather?.main} displayOptions={mainList} />
-          <Divider />
-          <List title='Winds' items={weather?.wind} displayOptions={windList}/>
-          <Divider />
-          <List items={weather?.clouds}  displayOptions={cloudiness}/>
-          <Divider />
-          <Button
-            text='Open in Google Maps'
-            onClick={() => {
-              window.open(
-                `https://www.google.com/maps?q=${value?.city.coord?.lat},${value?.city.coord?.lon}`,
-                "_blank"
-              );
-            }}
-          />
-        </RequestStateRender>
-      </div>
-    </aside>
+    <>
+      <button className={cls.Sidebar__toggle} onClick={toggleSidebar}>
+        {isSidebarOpen ? "<-":"☰"}
+      </button>
+      <aside className={`${cls.Sidebar} ${isSidebarOpen ? cls.open : ''}`}>
+        <div className={cls.Sidebar__content}>
+          <Autocomplete />
+          <RequestStateRender isLoading={isLoading} showMessages={false} error={error}>
+            <List title='Weather Details' items={weather?.main} displayOptions={mainList} />
+            <Divider />
+            <List title='Winds' items={weather?.wind} displayOptions={windList} />
+            <Divider />
+            <List items={weather?.clouds} displayOptions={cloudiness} />
+            <Divider />
+            <Button
+              text='Open in Google Maps'
+              onClick={() => {
+                window.open(
+                  `https://www.google.com/maps?q=${value?.city.coord?.lat},${value?.city.coord?.lon}`,
+                  "_blank"
+                );
+              }}
+            />
+          </RequestStateRender>
+        </div>
+      </aside>
+    </>
   );
 }
