@@ -22,3 +22,26 @@ export const mainList = {
     temp_kf: (value: string | number) => `${value}`,
   },
 };
+
+
+export const windList = {
+  nameConfig: {
+    speed: "Speed",
+    deg: "Degree",
+    gust: "Gust",
+  },
+  valueConfig: {
+    speed: (value: string | number) => `${value} m/s`,
+    deg: (value: string | number) => `${value}°`,
+    gust: (value: string | number) => `${value} m/s`,
+  },
+};
+
+export const cloudiness = {
+  nameConfig: {
+    all: "cloudiness",
+  },
+  valueConfig: {
+    all: (value: string | number) => `${value}%`,
+  },
+};

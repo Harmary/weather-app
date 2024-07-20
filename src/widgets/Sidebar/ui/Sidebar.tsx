@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import cls from "./Sidebar.module.scss";
 import { Divider } from "src/shared/ui/Divider/Divider";
 import { List } from "src/shared/ui/List/List";
-import { mainList } from "../config/titles";
+import { cloudiness, mainList, windList } from "../config/titles";
 import { selectWeatherDetails } from "src/entities/weather/model/selector/selectWeatherDetails";
 import { Autocomplete } from "src/features/getWeatherByCityName/ui/Autocomplete";
 import { RequestStateRender } from "src/shared/lib/components/RequestStateRender";
@@ -23,9 +23,9 @@ export function Sidebar() {
         <RequestStateRender isLoading={isLoading} showMessages={false} error={error}>
           <List title='Weather Details' items={weather?.main} displayOptions={mainList} />
           <Divider />
-          <List title='Winds' items={weather?.wind} />
+          <List title='Winds' items={weather?.wind} displayOptions={windList}/>
           <Divider />
-          <List title='Clouds' items={weather?.clouds} />
+          <List items={weather?.clouds}  displayOptions={cloudiness}/>
           <Divider />
           <Button
             text='Open in Google Maps'
