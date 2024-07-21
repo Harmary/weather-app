@@ -1,19 +1,18 @@
 import { ChangeEvent, useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { Combobox, ComboboxInput, ComboboxOption, ComboboxOptions } from "@headlessui/react";
 
 import debounce from "lodash.debounce";
 
 import { UnknownAction } from "@reduxjs/toolkit";
+import { getInfoAboutTheWeather } from "src/entities/weather";
+import { selectListOfGeopositions } from "src/entities/geoposition";
 import { AppDispatch } from "src/app/providers/StoreProvider/config/store";
 import { Geoposition, geopositionActions, getGeoposition } from "src/entities/geoposition";
-import { getInfoAboutTheWeather } from "src/entities/weather/model/services/getInfoAboutTheWeather";
-import { selectListOfGeopositions } from "src/entities/geoposition/model/selectors/selectListOfGeopositions";
 
 import cls from "./Autocomplete.module.scss";
 
-const MIN_QUERY_STR = 3;
+const MIN_QUERY_STR = 2;
 
 export function Autocomplete() {
   const [selectedOption, setSelectedOption] = useState<Geoposition | null>(null);

@@ -1,17 +1,15 @@
 .Container {
-   margin: 0 auto;
-   height: inherit;
+  height: inherit;
+  margin: 0 124px;
 }
 
-.lg {
-    margin: 0 124px;
+@media (max-width: 800px) {
+  .Container {
+    margin: 0 60px;
+  }
 }
-
-.md {
-    margin: 0 62px;
+@media (max-width: 500px) {
+  .Container {
+    margin: 0 16px;
+  }
 }
-
-.sm {
-     margin: 0 31px;
-}
-

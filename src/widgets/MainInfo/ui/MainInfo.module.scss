@@ -5,6 +5,13 @@
   gap: 24px;
   color: var(--title-font-color);
 
+  &_right {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    gap: 24px;
+  }
+
   &__place {
     display: flex;
     flex-direction: column;
@@ -14,23 +21,23 @@
   &__temperature {
     font-size: var(--font-size-title);
     line-height: var(--font-line-title);
-    @media (max-width: 1200px) {
-      font-size: calc(var(--font-size-title) / 2);
-      line-height: calc(var(--font-line-title) / 2);
+    @media (max-width: 800px) {
+      font-size: calc(var(--font-size-title) / 1.5);
+      line-height: calc(var(--font-line-title) / 1.5);
     }
   }
 
   &__city {
     font-size: var(--font-size-subtitle);
-    @media (max-width: 1200px) {
-      font-size: calc(var(--font-size-subtitle) / 2);
+    @media (max-width: 800px) {
+      font-size: calc(var(--font-size-subtitle) / 1.5);
     }
   }
 
   &__day {
     font-size: var(--font-size-text);
-    @media (max-width: 1200px) {
-      font-size: calc(var(--font-size-text) / 2);
+    @media (max-width: 800px) {
+      font-size: calc(var(--font-size-text) / 1.5);
     }
   }
 
@@ -41,18 +48,23 @@
     &img {
       width: 80px;
       height: 80px;
-       @media (max-width: 1200px) {
-       width: 40px;
-      height: 40px;
+      @media (max-width: 800px) {
+        width: 40px;
+        height: 40px;
       }
     }
 
     &name {
       display: block;
       font-size: var(--font-size-text);
-      @media (max-width: 1200px) {
-        font-size: calc(var(--font-size-text) / 2);
+      @media (max-width: 800px) {
+        font-size: calc(var(--font-size-text) / 1.5);
       }
     }
+  }
+
+  @media (max-width: 1200px) {
+    flex-direction: column;
+    align-items: start;
   }
 }

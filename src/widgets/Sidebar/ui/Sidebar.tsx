@@ -1,15 +1,18 @@
-import { useSelector } from "react-redux";
-import cls from "./Sidebar.module.scss";
-import { Divider } from "src/shared/ui/Divider/Divider";
-import { List } from "src/shared/ui/List/List";
-import { cloudiness, mainList, windList } from "../config/titles";
-import { selectWeatherDetails } from "src/entities/weather/model/selector/selectWeatherDetails";
-import { Autocomplete } from "src/features/getWeatherByCityName/ui/Autocomplete";
-import { RequestStateRender } from "src/shared/lib/components/RequestStateRender";
-import { selectRequestState } from "src/entities/weather";
-import { Button } from "src/shared/ui/Button/Button";
-import { selectWeather } from "src/entities/weather/model/selector/selectWeather";
 import { useState } from "react";
+
+import { useSelector } from "react-redux";
+
+import { List } from "src/shared/ui/List/List";
+import { Button } from "src/shared/ui/Button/Button";
+import { selectWeather } from "src/entities/weather";
+import { Divider } from "src/shared/ui/Divider/Divider";
+import { selectRequestState } from "src/entities/weather";
+import { selectWeatherDetails } from "src/entities/weather";
+import { Autocomplete } from "src/features/getWeatherByCityName";
+import { RequestStateRender } from "src/shared/lib/components/RequestStateRender";
+
+import cls from "./Sidebar.module.scss";
+import { cloudiness, mainList, windList } from "../config/titles";
 
 export function Sidebar() {
   const { isLoading, error } = useSelector(selectRequestState);
@@ -23,10 +26,10 @@ export function Sidebar() {
 
   return (
     <>
-      <button className={cls.Sidebar__toggle} onClick={toggleSidebar}>
-        {isSidebarOpen ? "<-":"☰"}
+      <button className={`${cls.Sidebar__toggle} ${isSidebarOpen ? cls.toggle_open : ""}`} onClick={toggleSidebar}>
+        {isSidebarOpen ? "➔" : "☰"}
       </button>
-      <aside className={`${cls.Sidebar} ${isSidebarOpen ? cls.open : ''}`}>
+      <aside className={`${cls.Sidebar} ${isSidebarOpen ? cls.open : ""}`}>
         <div className={cls.Sidebar__content}>
           <Autocomplete />
           <RequestStateRender isLoading={isLoading} showMessages={false} error={error}>

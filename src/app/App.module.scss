@@ -21,8 +21,11 @@
     font-weight: 500;
     display: block;
     padding-top: 80px;
+    @media (max-width: 500px) {
+      padding-top: 32px;
+    }
   }
-
+  
   &__layout {
     height: 80vh;
     display: flex;

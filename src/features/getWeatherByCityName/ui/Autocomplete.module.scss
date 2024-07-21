@@ -2,7 +2,7 @@
   position: sticky;
   &__input {
     all: unset;
-    width: 100%;
+    width: -webkit-fill-available;
     padding: 16px;
 
     border-bottom: 2px solid rgba(255, 255, 255, 0.3);
@@ -21,6 +21,8 @@
 
   &__options {
     background-color: #424242;
+    position: absolute;
+    z-index: 1001;
   }
 
   &__option {

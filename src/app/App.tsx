@@ -27,7 +27,7 @@ function App() {
   return (
     <div className={`${cls.App} ${cls[backgroundImg]}`}>
       <main className={cls.App__content}>
-        <Container maxWidth='lg'>
+        <Container>
           <div className={cls.App__layout}>
             <span className={cls.App__logo}>weather.app</span>
             <RequestStateRender isLoading={currentWeather.isLoading} error={currentWeather.error}>

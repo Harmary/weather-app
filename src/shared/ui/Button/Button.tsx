@@ -2,7 +2,7 @@ import React, { PropsWithChildren, useMemo } from "react";
 import cls from "./Button.module.scss";
 import { weatherImgs } from "src/shared/config/weatherConfig";
 import { useSelector } from "react-redux";
-import { selectCurrentWeather } from "src/entities/weather/model/selector/selectCurrentWeather";
+import { selectCurrentWeather } from "src/entities/weather";
 
 interface ButtonProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   className?: string;
